@@ -16,7 +16,8 @@ def sendEmail(receiverAddress, subject, messageBody):
 		server.sendmail(SENDER_EMAIL, receiverAddress, message_)
 
 SENDER_EMAIL = input("Enter sender's email address: ")
-SENDER_PASSWORD = input("Enter sender's password (This part is not secure!):")
-sendEmail("dstrube@gmail.com","Test subject","Test body. This is an email sent from Python.")
+SENDER_PASSWORD = input("Enter sender's password (This part is not secure!): ")
+receiverAddress = input("Enter receiver's address: ")
+sendEmail(receiverAddress, "Test subject", "Test body. This is an email sent from Python.")
 
 #TODO: Verify this on a secure server
