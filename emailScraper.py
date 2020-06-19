@@ -16,14 +16,31 @@ import threading
 import time
 from urllib.parse import urlsplit
 
+#TODO: shepherd center, welstar, northside
+
+original_url = "https://www.shepherd.org/"
+domain = "shepherd"
+baseUrl = "shepherd.org"
+
+"""done:
+original_url = "http://www.emory.edu/coronavirus//"
+domain = "emory"
+baseUrl = "emory.edu"
+
 original_url = "https://www.gradyhealth.org"
 domain = "grady"
 baseUrl = "gradyhealth.org"
+#grady responds with 403 forbidden; may need http headers specifying a browser:
+#https://stackoverflow.com/questions/27652543/how-to-use-python-requests-to-fake-a-browser-visit
+#https://en.wikipedia.org/wiki/List_of_HTTP_header_fields
+#http://www.useragentstring.com/pages/useragentstring.php
 
-#original_url = "http://www.emory.edu/coronavirus//"
-#domain = "emory"
-#baseUrl = "emory.edu"
-linkPhase = 1
+original_url = "https://www.northside.com/"
+domain = "northside"
+baseUrl = "northside.com"
+"""
+
+linkPhase = 3
 
 # to save urls to be scraped
 unscraped = deque([original_url])
@@ -73,10 +90,11 @@ def getTimeForFile():
 	return datetime.datetime.now().strftime(timeFormat)
 	
 def isLinkGood(link, phase):
+	link = link.lower()
 	if phase >= 1:
 		if ".gz" in link or ".pdf" in link or ".ppt" in link or ".doc" in link:
 			return False
-		elif ".png" in link or ".jpg" in link or ".mp4" in link:
+		elif ".png" in link or ".jpg" in link or ".mp4" in link or ".xls" in link:
 			return False
 	if phase >= 2:
 		if "/../" in link or "#" in link or "?" in link or "tel:" in link:
@@ -121,7 +139,8 @@ def getInfo(url):
 		
 		print(str(len(unscraped))+"; "+ getTimeElapsed(_start) + "; Crawling URL %s" % url) 
 		try:
-			response = requests.get(url)
+			headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+			response = requests.get(url, headers = headers)
 		except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
 			# ignore pages with errors and continue with next url
 			return True
@@ -139,6 +158,7 @@ def getInfo(url):
 		new_emails_net = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.net", 
 			response.text, re.I)) 
 		
+		#print("len()")
 		emails.update(new_emails_com)
 		emails.update(new_emails_edu)
 		emails.update(new_emails_gov)
@@ -147,10 +167,11 @@ def getInfo(url):
 	
 		# create a beutiful soup for the html document
 		soup = BeautifulSoup(response.text, features="html.parser") 
-		print("len(response.text):" + str(len(response.text)))
-		print("response.text: " + response.text)
+		#print("len(response.text):" + str(len(response.text)))
+		#print("response.text: " + response.text)
 		allLinks = soup.find_all("a")
-		print("len(allLinks):" + str(len(allLinks)))
+		#print("len(allLinks):" + str(len(allLinks)))
+		appendCount = 0
 		for anchor in allLinks: 
 			# extract linked url from the anchor
 			if "href" in anchor.attrs:
@@ -165,9 +186,11 @@ def getInfo(url):
 			elif not link.startswith('http'):
 				link = path + link
 		
-			#if domain in link and isLinkGood(link, linkPhase):
-			if link not in unscraped and link not in scraped:
-				unscraped.append(link)
+			if domain in link and isLinkGood(link, linkPhase):
+				if link not in unscraped and link not in scraped:
+					appendCount += 1
+					unscraped.append(link)
+		#print("appended " + str(appendCount))
 	except Exception as exception:
 		print("Exception caught in getInfo: "+str(exception))
 		return False
@@ -189,13 +212,14 @@ def main(args):
 	global timer
 	global _start
 	_start = time.time()
-	count = 0
+	#count = 0
 	print("size of unscraped; time elapsed; ...")
 	while len(unscraped):
-		count += 1
-		if count > 2:
-			break
+		#count += 1
+		#if count > 2:
+		#	break
 		url = unscraped.popleft()  # popleft(): Remove and return an element from the left side of the deque
+		#print("len(unscraped) = " + str(len(unscraped)))
 		thread = MyThread(url)
 		timer = threading.Timer(timeout, connectionMonitor, kwargs = {"url": url, "thread": thread, "timeout": timeout}) 
 		thread.daemon = True
@@ -203,21 +227,27 @@ def main(args):
 		timer.start()
 		thread.join(timeout)
 		if isTimeToBreak:
+			print("isTimeToBreak")
 			break #if a stopping error was encountered, stop
 		if thread.is_alive():
-			print("Thread joined (at " + getTime() + ") but is still alive. Waiting for it to die (2min limit)", end='', flush=True) 
+			timeSleep = 5
+			minuteWait = 1
+			timeSleepCycles = 12
+			print("Thread joined (at " + getTime() + ") but is still alive. Waiting for it to die (" + str(minuteWait) + " min limit)", end='', flush=True) 
 			waitCount = 0
 			while thread.is_alive():
 				#wait for the thread to stop running after timeout
 				print(".", end='', flush=True)
 				waitCount += 1
-				if waitCount > 24:
-					print(" We've waited over "+str(int(waitCount / 12))+" minute(s) "
-						+"for this thread to die. Exiting at " + getTime())
-					writeWhatYouGot()
-					sys.exit()
+				if waitCount > (minuteWait * timeSleepCycles):
+					print("We've waited over "+str(minuteWait)+" minute(s)"
+					#	+" for this thread to die. Exiting at " + getTime())
+					#writeWhatYouGot()
+					#sys.exit()
+						+"; skipping on to the next...")
+					break
 				thread.stop()
-				time.sleep(5)
+				time.sleep(timeSleep)
 			print()
 
 	df = pd.DataFrame(emails, columns=["Email"]) 
