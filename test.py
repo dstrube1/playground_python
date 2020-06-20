@@ -37,17 +37,18 @@ def noValueReturned(a,b):
 def ifelseF():
 	a = 1
 	if a == 1:
-		print 'a is 1'
+		print('a is 1')
 	elif a == 2: #else if => elif
-		print 'a is 2'
+		print('a is 2')
 	else:
 	#pass does nothing; used when a statement is required syntactically but the program requires no action.
 		pass
 #ifelseF()
 
 def paramF(a,b=1,c='c'):
-	print "a = ",a,"; b = ",b,"; c = ",c
+	print("a = ",a,"; b = ",b,"; c = ",c)
+	print("a = {}; b = {}, c = {}".format(a,b,c))
 #paramF() must be called with at least one param
 paramF(1) #1st param can be int
-paramF('x') #1st param can be string
-paramF(1,c=2,b='d') #params can be out of order if named; data types can change
+#paramF('x') #1st param can be string
+#paramF(1,c=2,b='d') #params can be out of order if named; data types can change
