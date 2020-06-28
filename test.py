@@ -49,6 +49,20 @@ def paramF(a,b=1,c='c'):
 	print("a = ",a,"; b = ",b,"; c = ",c)
 	print("a = {}; b = {}, c = {}".format(a,b,c))
 #paramF() must be called with at least one param
-paramF(1) #1st param can be int
+#paramF(1) #1st param can be int
 #paramF('x') #1st param can be string
 #paramF(1,c=2,b='d') #params can be out of order if named; data types can change
+
+import datetime
+import time
+def timeTest():
+	now = datetime.datetime.now()
+	current_local = time.localtime()
+	#https://stackoverflow.com/questions/31299580/python-print-the-time-zone-from-strftime
+	applyTimezoneName = current_local.tm_zone #time.struct_time.tm_zone #datetime.tzinfo.tzname(now.astimezone())
+	applyTime = "{:02d}".format(now.hour) + ":" + "{:02d}".format(now.minute) + ":" + "{:02d}".format(now.second)
+	applyDate = str(now.year) + "-" + "{:02d}".format(now.month) + "-" + "{:02d}".format(now.day)
+	print("datetime to apply: " + applyDate + " " + applyTime + " " + applyTimezoneName)
+
+	
+timeTest()
