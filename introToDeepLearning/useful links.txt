@@ -1,0 +1,46 @@
+https://gatech.instructure.com/courses/71022
+
+Neural Networks:
+
+https://playground.tensorflow.org (Links to an external site.)
+
+https://www.tensorflow.org/tutorials/keras/classification (Links to an external site.)
+
+ 
+
+Deep Learning vs other methods 
+
+ https://developers.google.com/machine-learning/guides/text-classification/step-2-5 (Links to an external site.)
+
+ 
+
+CNN:
+
+Example 1
+
+https://www.cs.ryerson.ca/~aharley/vis/conv/ (Links to an external site.)
+
+Example 2
+
+https://www.tensorflow.org/tutorials/images/cnn (Links to an external site.)
+
+ 
+
+Embedding:
+
+https://projector.tensorflow.org/ (Links to an external site.)
+
+https://www.tensorflow.org/tutorials/keras/text_classification (Links to an external site.)
+
+RNN:
+
+https://www.tensorflow.org/tutorials/text/text_classification_rnn
+
+===
+https://scikit-learn.org/stable/user_guide.html (Links to an external site.)
+
+https://www.tensorflow.org/learn (Links to an external site.)
+
+https://www.tensorflow.org/guide (Links to an external site.)
+
+https://www.tensorflow.org/tutorials/keras/classification
