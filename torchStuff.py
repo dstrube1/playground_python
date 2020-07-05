@@ -2,11 +2,11 @@
 #https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html
 #torchStuff.py
 
-#import numpy
-#print("I can import numpy")
+import numpy
+print("I can import numpy")
 
-#import torch
-#print("I can import torch")
+import torch
+print("I can import torch")
 
 #pip3 install torch --user
 
