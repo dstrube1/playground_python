@@ -62,7 +62,15 @@ def timeTest():
 	applyTimezoneName = current_local.tm_zone #time.struct_time.tm_zone #datetime.tzinfo.tzname(now.astimezone())
 	applyTime = "{:02d}".format(now.hour) + ":" + "{:02d}".format(now.minute) + ":" + "{:02d}".format(now.second)
 	applyDate = str(now.year) + "-" + "{:02d}".format(now.month) + "-" + "{:02d}".format(now.day)
-	print("datetime to apply: " + applyDate + " " + applyTime + " " + applyTimezoneName)
+	print("datetime to apply: " + applyDate + " " + applyTime + " " + applyTimezoneName)	
+#timeTest()
 
+def rangeTest():
+	print("range(0,3):")
+	for x in range(0,3):
+		print(x) #0,1,2
 	
-timeTest()
+	print("range(1,4):")
+	for x in range(1,4):
+		print(x) #1,2,3
+rangeTest()
