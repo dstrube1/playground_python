@@ -76,9 +76,9 @@ def stringF3():
 
 def stringF4():
 	#from https://www.scheller.gatech.edu/feeds/directory.xml
-	inFileName = "schellerDirectory.xml"
+	inFileName = "2_dir.xml" #"schellerDirectory.xml"
 	inFileMode = "rt"
-	outFileName = "schellerDirectoryOut.xml"
+	outFileName = "2_dirOut.xml" #"schellerDirectoryOut.xml"
 	outFileMode = "at"
 	with open(inFileName, inFileMode) as fileIn:
 		countIn = 0
