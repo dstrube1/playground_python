@@ -5,43 +5,43 @@
 
 #function doing math stuffs, pt 0
 def mathF0():
-	print 'number of minutes in seven weeks: '
-	print 7 * 7 * 24 * 60
+	print ('number of minutes in seven weeks: ')
+	print (7 * 7 * 24 * 60)
 
-	print #new line
+	print() #new line
 	light_meters_per_second = 299792458
 	billionth = 1 / 1000000000.0 #adding .0 turns this from int to float calculation
 	centimeters_per_meter = 100
-	#print 'light travels this many meters per second: ' + light_meters_per_second.to_s
-	print "light travels this many centimeters in a nanosecond: "
-	print light_meters_per_second * centimeters_per_meter * billionth 
+	#print ('light travels this many meters per second: ' + light_meters_per_second.to_s)
+	print ("light travels this many centimeters in a nanosecond: ")
+	print (light_meters_per_second * centimeters_per_meter * billionth )
 
-	print
-	print "light travels this many centimeters in the time it takes for a 2.6 GHz processor to complete one cycle: "
+	print()
+	print ("light travels this many centimeters in the time it takes for a 2.6 GHz processor to complete one cycle: ")
 	#2.6 GHz processor = 2.6 billon cycles / second
 	cycles_per_second = 2600000000
-	print light_meters_per_second * centimeters_per_meter * billionth / (cycles_per_second * billionth)
+	print (light_meters_per_second * centimeters_per_meter * billionth / (cycles_per_second * billionth))
 
-	print 
-	#print "what happens here?"
+	print() 
+	#print ()"what happens here?"
 	#minutes = minutes + 1
 	#seconds = minutes * 60
-	#print seconds
+	#print ()seconds
 	#error, because we can't assign a new variable with itself
 
 	age = 40
 	days_per_year = 365.25
-	print "I've been alive about this many days: "
-	print age * 365.25
+	print ("I've been alive about this many days: ")
+	print (age * 365.25)
 
-	print 
+	print ()
 	a = 1
 	x = 2
-	print "a = " + str(a) + ", x = " + str(x)
+	print ("a = " + str(a) + ", x = " + str(x))
 	a,x = x,a
-	print "a = " + str(a) + ", x = " + str(x)
+	print ("a = " + str(a) + ", x = " + str(x))
 	a,x = x,a
-	print "a = " + str(a) + ", x = " + str(x)
+	print ("a = " + str(a) + ", x = " + str(x))
 	return
 #mathF0()
 
@@ -50,16 +50,31 @@ def round(i):
 		j = (i - i%1) + 1
 	else:
 		j = (i - i%1)
-	print "i, " + str(i) + " rounded = " + str(j)
+	print ("i, " + str(i) + " rounded = " + str(j))
 	return
 #round(3.14)
 #round(27.63)
 
 def square0(n):
 	return "Square of " + str(n) + ": " + str(n**2)
-print square0(4)
+#print (square0(4))
 
 def square1(n):
 	return "Square of " + str(n) + ": " + str(n*n)
-print square1(5)
+#print (square1(5))
 
+def getTime(seconds):
+    if int(seconds / 60) == 0:
+        return str(seconds) + " second(s)"
+    minutes = int(seconds / 60)
+    seconds = int(seconds % 60)
+    if int(minutes / 60) == 0:
+        return str(minutes) + " minute(s) " + str(seconds) + " second(s)"
+    hours = int(minutes / 60)
+    minutes = int(minutes % 60)
+    return str(hours) + " hour(s) " + str(minutes) + " minute(s) " + str(seconds) + " second(s)"
+
+print("getTime(59) = " + getTime(59) )
+print("getTime(61) = " + getTime(61) )
+print("getTime(9335) = " + getTime(9000 + 335) )
+#print("61 / 60 = " + str(int(61 / 60)))
