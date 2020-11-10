@@ -1,0 +1,39 @@
+<html>
+<head><title></title></head>
+<body>
+<h1>{{device.device_name}}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'bsa:reboot' device.id %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="choice" id="choice{{ device }}" value="{{ choice.id }}"/>
+<!--<input type="" name="" id="" value="">-->
+<input type="submit" value="Reboot"/>
+</form>
+
+<form action="{% url 'bsa:snapshot' device.id %}" method="post">
+{% csrf_token %}
+<input type="hidden" name="choice" id="choice{{ device }}" value="{{ choice.id }}"/>
+<input type="submit" value="Snapshot"/>
+</form>
+
+<ul>
+<li>device_datetime: {{device.device_datetime}}</li>
+<li>device_last_updated: {{device.device_last_updated}}</li>
+<li>uptime: {{device.uptime}}</li>
+<li>boot_version_number: {{device.boot_version_number}}</li>
+<li>os_version_number: {{device.os_version_number}}</li>
+<li>assets_page: {{device.assets_page}}</li>
+<li>serial: {{device.serial}}</li>
+<li>ethernet_ip: <a href="http://{{device.ethernet_ip}}" target="_blank">{{device.ethernet_ip}}</a></li>
+<li>model: {{device.model}}</li>
+<li>mac: {{device.mac}}</li>
+<li>video_mode: {{device.video_mode}}</li>
+<li>device.company: TODO
+</ul>
+
+<a href="{% url 'bsa:index' %}">Index</a>
+
+</body>
+</html>
