@@ -15,15 +15,13 @@ django-admin version
 1- make & run django site on web dev
 django-admin startproject brightsignAdmin
 	in brightsignAdmin/urls.py:
-	add: 
-		getInfo
-		reboot
-		getSnapshot
-		updateFirmware
-	remove: others
+		add: 
+			bsa/
+			admin/
+		remove: others
 
 a- start server (foreach python, use python3):
-python manage.py runserver --noreload --nothreading
+python manage.py runserver --nothreading
 #specify port:
 #python manage.py runserver 8080
 #specify IP address and port:
@@ -63,8 +61,11 @@ i- update bsa/admin.py to allow admin to add and edit devices
 j- add to bsa/views.py: def getInfo... etc
 	add to bsa/urls.py: references to views
 
-python manage.py runserver --noreload --nothreading
+python manage.py runserver --nothreading
 
+confirmed: (with on_delete=models.CASCADE)
+- deleting snapshot does not delete the device;
+- deleting device does delete all associated snapshots
 
 2- prove can access site on web dev from web dev's html home
 from index.html: link to something lke:
@@ -80,3 +81,33 @@ brightsignAdmin:8000
 7- with db debug turned off, make database with all the device info:
 	device name, uptime, version #s, assets page URL, serial #, IP address
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

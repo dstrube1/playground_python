@@ -1,0 +1,19 @@
+<html>
+<head><title>Template Index Title</title></head>
+<body>
+
+<a href="">Company 1</a>
+<a href="">Company 2</a>
+
+All devices:
+{% if allInDB %}
+    <ul>
+    {% for device in allInDB %}
+        <li><a href="{% url 'bsa:getInfo' device.id %}">{{ device.device_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No devices are available.</p>
+{% endif %}
+</body>
+</html>
