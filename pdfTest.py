@@ -1,28 +1,36 @@
-#pdfTest.py: read in pdf file, output the file's text
+#pdfTest.py
+#Purpose: read in pdf file, output the file's text
 #based off of this:
 #https://stackoverflow.com/questions/34837707/how-to-extract-text-from-a-pdf-file
 
-fileName = "pdfTest.pdf"
-""" 
+#https://www.cdc.gov/nchs/data/dvs/LCWK2_2013.pdf
+#fileName = "pdfTest0.pdf"
+fileName = "https://www.cdc.gov/nchs/data/dvs/LCWK2_2013.pdf"
+"""
 #take 1 - doesn't work:
-import PyPDF2 #pip install PyPDF2
+#import PyPDF2 #pip install PyPDF2
+#better import:
+from PyPDF2 import PdfFileReader
 pdf_file = open(fileName)
-read_pdf = PyPDF2.PdfFileReader(pdf_file)
-number_of_pages = read_pdf.getNumPages()
-page = read_pdf.getPage(0)
-page_content = page.extractText()
-print (page_content)
+#read_pdf = PyPDF2.PdfFileReader(pdf_file)
+read_pdf = PdfFileReader(pdf_file)
+#number_of_pages = read_pdf.getNumPages()
+#print("number_of_pages:")
+#print(number_of_pages)
+#page = read_pdf.getPage(0)
+#page_content = page.extractText()
+#print (page_content)
 
 #error: io.UnsupportedOperation: can't do nonzero end-relative seeks
 """
-"""
+#"""
 #take 2 - works:
 
 from tika import parser # pip install tika
 
 raw = parser.from_file(fileName)
 print(raw['content'])
-"""
+#"""
 """
 #take 3 - works, but is much more verbose; 
 #output doesn't include "undefined" field names like take 2:
@@ -63,7 +71,7 @@ def convert_pdf_to_txt(path):
 text= convert_pdf_to_txt(fileName)
 print(text)
 """
-
+"""
 #take 4 - works best so far- include field data, doesn't require separate java app:
 #https://github.com/jalan/pdftotext
 import pdftotext
@@ -78,7 +86,7 @@ print(len(pdf))
 # Iterate over all the pages
 for page in pdf:
     print(page)
-
+"""
 #finally, take 5: pytesseract
 #import pytesseract
 #wait, this is for converting from images, not pdfs
