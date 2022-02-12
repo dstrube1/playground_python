@@ -36,4 +36,5 @@ for line in get_trappable_positions():
 	else:
 		line_index += 1
 
+print("max of 1 or 2:" + str(max(1,2)))
 print("Done")
