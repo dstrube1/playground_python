@@ -13,10 +13,10 @@ def sortEmail(fileInPath, fileOutPath):
 	with open(fileInPath, "rt") as fileIn:
 		dataIn = fileIn.readlines()
 	for	lineIn in dataIn:
-		if lineIn.strip().endswith("emory.edu"):
+		if lineIn.strip().endswith("@emory.edu"):
 			emoryEdu.append(lineIn)
 			dataIn.remove(lineIn)
-		elif lineIn.strip().endswith("emoryhealthcare.org"):
+		elif lineIn.strip().endswith("@emoryhealthcare.org"):
 			emoryHealthcare.append(lineIn)
 			dataIn.remove(lineIn)
 		elif lineIn.strip().endswith(".edu"):
