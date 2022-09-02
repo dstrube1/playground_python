@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from flask import Flask, request, make_response, escape
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.template import loader
 from django.shortcuts import get_object_or_404, render
@@ -83,7 +83,7 @@ def getSnapshot(request, device_id):
            'device':device,
            'error_message': "You didn't select a choice.",})
 	
-	return HttpResponse("Snapshot on device %s." % device_id)
+	return HttpResponse("Snapshot on device %s." % escape(device_id))
 	#Server error 500:
 	#return HttpResponseRedirect(reverse('bsa:snapshotResult', args=(device.id,)))
 
