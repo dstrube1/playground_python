@@ -44,7 +44,7 @@ def get_time(seconds):
     return str(hours) + ' hour(s), ' + str(minutes) + ' minute(s), and ' + str(seconds) + ' second(s)'
 
 
-path = 'images/'
+path = '/Users/dstrube/Downloads/temp/'
 dir_list = os.listdir(path)
 dir_list.sort()
 #######################################
@@ -100,7 +100,7 @@ print('files count: ' + str(len(dir_list)))
 duplicates = []
 anomalies = []
 index = 0
-print('Looking for duplicates & bad file names. "." = 1 file checked. "#" = duplicate found...')
+print('Looking for duplicates. "." = 1 file checked. "#" = duplicate found...')
 
 for file in dir_list:
     if file not in images_values.keys():
