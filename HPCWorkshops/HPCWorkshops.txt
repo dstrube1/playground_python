@@ -1,5 +1,15 @@
 2025-07-30:
+# Make sure you are on a GPU node:
 interact -gpu
+
+# Load the TensorFlow 2 Container:
+singularity shell --nv /ocean/containers/ngc/tensorflow/tensorflow_23.04-tf2-py3.sif
+
+# And start TensorFlow:
+python
+import tensorflow
+# Or 
+python CNN_Dropout.py
 
 2025-07-29:
 dstrube
@@ -67,29 +77,6 @@ spark-submit exercise.py
 
 nltk: Natural Language ToolKit
 PB: petabytes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SGD: Stochastic Gradient Descent
+ALS: Alternating Least Squares
+CFD: Computational fluid dynamics
