@@ -58,7 +58,7 @@ def mergeSort(dataset):
 			k +=1
 			j += 1
 
-def quickSOrt(dataset, first, last):
+def quickSort(dataset, first, last):
 	# Also divide and conquer, also O(n log n), also recursive, but generally better than mergeSort
 	# Operates in place on the data - doesn't need extra memory to do its work
 	# Tradeoff: worst case scenario: O(n^2) when data is mostly sorted already
@@ -69,8 +69,8 @@ def quickSOrt(dataset, first, last):
 		pivotIndex = partitionX(dataset, first, last)
 		
 		# Now sort the two partitions
-		quickSOrt(dataset, first, pivotIndex-1)
-		quickSOrt(dataset, pivotIndex+1, last)
+		quickSort(dataset, first, pivotIndex-1)
+		quickSort(dataset, pivotIndex+1, last)
 	
 
 def partitionX(dataset, first, last):
@@ -130,6 +130,6 @@ print("Result: ", list2)
 print("quickSort: ")
 list3 = list0.copy()
 print("Start: ", list3)
-quickSOrt(list3, 0, len(list3)-1)
+quickSort(list3, 0, len(list3)-1)
 print("Result: ", list3)
 
