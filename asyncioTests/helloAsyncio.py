@@ -164,7 +164,8 @@ async def main():
 # https://docs.python.org/3/howto/a-conceptual-overview-of-asyncio.html#a-conceptual-overview-of-asyncio
 # at "A homemade asyncio.sleep"
 
-
+# See also :
+# https://www.youtube.com/watch?v=Xbl7XjFYsN4&list=PLhNSoGM2ik6SIkVGXWBwerucXjgP1rHmB
 
 
 
