@@ -125,6 +125,10 @@ def printFromURL(url):
 		points = [(int(table_data[i]), int(table_data[i+2]), table_data[i+1]) for i in range(0, len(table_data), 3)]
 		print (points)
 		
+		if len(points) == 0:
+			print("Points is empty")
+			return
+		
 		# Determine grid size
 		max_x = max(x for x, y, char in points)
 		max_y = max(y for x, y, char in points)
@@ -145,3 +149,5 @@ def printFromURL(url):
 
 url = "https://docs.google.com/document/d/e/2PACX-1vRMx5YQlZNa3ra8dYYxmv-QIQ3YJe8tbI3kqcuC7lQiZm-CSEznKfN_HYNSpoXcZIV3Y_O3YoUB1ecq/pub"
 printFromURL(url)
+
+print([x * 2 for x in range(3)])
