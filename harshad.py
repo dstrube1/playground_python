@@ -13,7 +13,7 @@ def digits_sum_in_base(n, base):
 	return sum(get_digits_in_base(n, base))
 
 def is_harshad_in_base(n, base):
-	digits_sum = digits_sum_in_base(n, base)
+	digit_sum = digits_sum_in_base(n, base)
 	if digit_sum == 0:
 		return False # avoid divide-by-zero
 	return n % digit_sum == 0
@@ -21,11 +21,15 @@ def is_harshad_in_base(n, base):
 def main():
 	try:
 		number = int(input("Enter a positive integer: "))
+		# 2016502858579884466176 ?
 		if number <= 0:
 			print("Try again")
 			return
 		harshad_bases = []
-		# print("\n{number}")
+		for base in range(2,21):
+			if is_harshad_in_base(number, base):
+				harshad_bases.append(base)
+		print(f"\n{number} is a Harshad number in the following bases: {harshad_bases}" ) 
 	except ValueError:
 		print("Invalid input. Try again.")
 if __name__ == "__main__":
