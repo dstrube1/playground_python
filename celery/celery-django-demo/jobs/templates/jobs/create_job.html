@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Job</title>
+</head>
+<body>
+    <h1>Create Job</h1>
+
+    <form method="post">
+    <!-- 
+    This protects the POST request against Cross-Site Request Forgery (CSRF):
+    -->
+        {% csrf_token %}
+	<!--
+	This tells Django to render the JobForm as HTML:
+	-->
+        {{ form.as_p }}
+
+        <button type="submit">Submit Job</button>
+    </form>
+</body>
+</html>
