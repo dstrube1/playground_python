@@ -121,3 +121,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Use the Redis server running on my Mac, on port 6379,
+# using Redis database 0, as the message broker.
+CELERY_BROKER_URL = "redis://localhost:6379/0"

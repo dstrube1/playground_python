@@ -78,15 +78,51 @@ http://127.0.0.1:8000/admin/
 # Next, create and implement jobs/forms.py and update jobs/views.py
 # Then, create the templates
 mkdir -p jobs/templates/jobs
+
 # Create and fill out 
 jobs/templates/jobs/create_job.html
 jobs/templates/jobs/job_created.html
 jobs/urls.py
+
 # Update
 config/urls.py
+
 # Goto and verify
 http://127.0.0.1:8000/jobs/
 http://127.0.0.1:8000/admin/jobs/job/
+
+# Install celery & verify
+pip install celery
+celery --version
+
+# Install redis
+brew install redis
+
+# Add Docker to $PATH & verify
+echo 'export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+docker --version
+
+# Start redis via docker
+docker run -d \
+  --name celery-redis \
+  -p 6379:6379 \
+  redis:7
+
+# Verify Docker is running redis
+docker ps
+
+# Create and populate config/celery.py
+# Update config/__init__.py
+# Update config/settings.py
+
+# Install & verify the Python Redis connector
+pip install redis
+python -c "import redis; print(redis.__version__)"
+
+# Verify that Django → Celery → Redis is configured correctly
+celery -A config worker --loglevel=INFO
+
 ```
 
 
