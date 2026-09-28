@@ -8,7 +8,11 @@ def create_job(request):
         form = JobForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            job = form.save()
+            # This import is in this function to make its purpose more obvious,
+            # and because I'm still learning.
+            from .tasks import process_job
+            process_job.delay(job.id)
             return redirect("job_created")
     else:
         form = JobForm()
