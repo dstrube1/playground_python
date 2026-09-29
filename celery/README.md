@@ -169,6 +169,13 @@ job.status
 job.result
 job.completed_at
 
+# Update:
+#jobs/views.py
+#jobs/urls.py
+
+# Add and implement:
+#jobs/templates/jobs/job_detail.html
+
 
 ```
 
