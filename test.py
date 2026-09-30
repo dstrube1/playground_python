@@ -3,6 +3,8 @@
 #Date: 2015-12-30
 #What is: testing python stuffs
 
+import sys
+
 dictionary = {
         'a': 1,
         'b': 2,
@@ -146,6 +148,12 @@ def printFromURL(url):
 		
 	except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
 		print("Caught exception")
+
+def main(args):
+	print("Hello from main")
+
+if __name__ == '__main__':
+    main(sys.argv)
 
 url = "https://docs.google.com/document/d/e/2PACX-1vRMx5YQlZNa3ra8dYYxmv-QIQ3YJe8tbI3kqcuC7lQiZm-CSEznKfN_HYNSpoXcZIV3Y_O3YoUB1ecq/pub"
 printFromURL(url)
